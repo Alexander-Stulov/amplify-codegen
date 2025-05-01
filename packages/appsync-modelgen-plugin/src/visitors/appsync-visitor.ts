@@ -6,7 +6,7 @@ import {
   ParsedConfig,
   RawConfig,
 } from '@graphql-codegen/visitor-plugin-common';
-import { camelCase, constantCase, pascalCase } from 'change-case';
+import { camelCase, constantCase } from 'change-case';
 import { plural } from 'pluralize';
 import crypto from 'crypto';
 import {
@@ -169,7 +169,7 @@ export interface ParsedAppSyncModelConfig extends ParsedConfig {
   selectedType?: string;
   generate?: CodeGenGenerateEnum;
   target?: string;
-  isDataStoreEnabled?: string;
+  isDataStoreEnabled?: boolean;
   isTimestampFieldsAdded?: boolean;
   handleListNullabilityTransparently?: boolean;
   usePipelinedTransformer?: boolean;
@@ -608,9 +608,9 @@ export class AppSyncModelVisitor<
 
   protected getEnumName(enumField: CodeGenEnum | string): string {
     if (typeof enumField === 'string') {
-      return pascalCase(enumField);
+      return enumField;
     }
-    return pascalCase(enumField.name);
+    return enumField.name;
   }
 
   protected getModelName(model: CodeGenModel) {
@@ -818,7 +818,7 @@ export class AppSyncModelVisitor<
   protected processConnectionDirective(): void {
     Object.values(this.modelMap).forEach(model => {
       model.fields.forEach(field => {
-        const connectionInfo = processConnections(field, model, this.modelMap);
+        const connectionInfo = processConnections(field, model, this.modelMap, !!this.config.isDataStoreEnabled);
         if (connectionInfo) {
           if (connectionInfo.kind === CodeGenConnectionType.HAS_MANY || connectionInfo.kind === CodeGenConnectionType.HAS_ONE) {
             // Need to update the other side of the connection even if there is no connection directive
@@ -1184,7 +1184,11 @@ export class AppSyncModelVisitor<
               connectionInfo.targetName !== 'id'
             ) {
               // Need to remove the field that is targetName
-              connectionInfo.targetNames.forEach(targetName => removeFieldFromModel(model, targetName));
+              const primaryKeyFieldNames = getModelPrimaryKeyComponentFields(model).map(field => field.name);
+              connectionInfo.targetNames
+                // Don't remove the field if it is part of the primary key field on the parent model
+                .filter(targetName => !primaryKeyFieldNames.includes(targetName))
+                .forEach(targetName => removeFieldFromModel(model, targetName));
             }
           });
         });

@@ -3,6 +3,55 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.15.2](https://github.com/aws-amplify/amplify-codegen/compare/@aws-amplify/appsync-modelgen-plugin@2.15.1...@aws-amplify/appsync-modelgen-plugin@2.15.2) (2025-02-25)
+
+### Bug Fixes
+
+- keep foreign keys on native platforms when they are part of the primary key ([#887](https://github.com/aws-amplify/amplify-codegen/issues/887)) ([b4c4af5](https://github.com/aws-amplify/amplify-codegen/commit/b4c4af5aeadab8f7794bc3c980e649a729103793))
+- stop pascal casing enums for MIS ([#931](https://github.com/aws-amplify/amplify-codegen/issues/931)) ([f763085](https://github.com/aws-amplify/amplify-codegen/commit/f7630858151dbe2f9f5f22e907aa6f64c010462f))
+
+## [2.15.1](https://github.com/aws-amplify/amplify-codegen/compare/@aws-amplify/appsync-modelgen-plugin@2.15.0...@aws-amplify/appsync-modelgen-plugin@2.15.1) (2024-11-14)
+
+### Bug Fixes
+
+- **conversation:** prefix supporting types with AmplifyAI ([#907](https://github.com/aws-amplify/amplify-codegen/issues/907)) ([eba466f](https://github.com/aws-amplify/amplify-codegen/commit/eba466ff739538c634d3086d3970d1bab40b1495))
+
+# [2.15.0](https://github.com/aws-amplify/amplify-codegen/compare/@aws-amplify/appsync-modelgen-plugin@2.14.0...@aws-amplify/appsync-modelgen-plugin@2.15.0) (2024-11-07)
+
+### Features
+
+- **ai:** support streaming ([#899](https://github.com/aws-amplify/amplify-codegen/issues/899)) ([7b8ee57](https://github.com/aws-amplify/amplify-codegen/commit/7b8ee574df3bc0ee8ac781f7809742063db66802))
+
+# [2.14.0](https://github.com/aws-amplify/amplify-codegen/compare/@aws-amplify/appsync-modelgen-plugin@2.13.2...@aws-amplify/appsync-modelgen-plugin@2.14.0) (2024-10-28)
+
+### Bug Fixes
+
+- add owner field to conversation model ([#893](https://github.com/aws-amplify/amplify-codegen/issues/893)) ([705ac3a](https://github.com/aws-amplify/amplify-codegen/commit/705ac3ad6c422cedb32428ad4970b04e58cf2984))
+
+### Features
+
+- remove `update: null` for conversation model in MIS ([#895](https://github.com/aws-amplify/amplify-codegen/issues/895)) ([bef8bb2](https://github.com/aws-amplify/amplify-codegen/commit/bef8bb2a94ed9cb60f36f861ce91fb1148f68bae))
+- Sync codegen behavior implementation adding generateModelsSync ([#894](https://github.com/aws-amplify/amplify-codegen/issues/894)) ([fac63c1](https://github.com/aws-amplify/amplify-codegen/commit/fac63c1497b1e4b1f0f22e977500378afdd9a6d9))
+
+## [2.13.2](https://github.com/aws-amplify/amplify-codegen/compare/@aws-amplify/appsync-modelgen-plugin@2.13.1...@aws-amplify/appsync-modelgen-plugin@2.13.2) (2024-10-03)
+
+### Bug Fixes
+
+- allow required uni-directional hasOne with [@connection](https://github.com/connection) when datastore is disabled ([#888](https://github.com/aws-amplify/amplify-codegen/issues/888)) ([648f2ed](https://github.com/aws-amplify/amplify-codegen/commit/648f2edd3393ba694eef0e40af43b2bad159104d))
+
+## [2.13.1](https://github.com/aws-amplify/amplify-codegen/compare/@aws-amplify/appsync-modelgen-plugin@2.13.0...@aws-amplify/appsync-modelgen-plugin@2.13.1) (2024-09-26)
+
+### Bug Fixes
+
+- **amplify-codegen:** support multiple indexes on the same field in introspection schema ([#879](https://github.com/aws-amplify/amplify-codegen/issues/879)) ([60dd629](https://github.com/aws-amplify/amplify-codegen/commit/60dd62993241df56bb4f27afe79e1e7e1956d6ff))
+
+# [2.13.0](https://github.com/aws-amplify/amplify-codegen/compare/@aws-amplify/appsync-modelgen-plugin@2.12.3...@aws-amplify/appsync-modelgen-plugin@2.13.0) (2024-09-05)
+
+### Features
+
+- **appsync-modelgen-plugin:** add support for generation route definitions ([#869](https://github.com/aws-amplify/amplify-codegen/issues/869)) ([8c4be9a](https://github.com/aws-amplify/amplify-codegen/commit/8c4be9adf8b2ad4dd1ddec90abbbe04674092ecc))
+- **conversation:** add conversation route handling in mis ([#872](https://github.com/aws-amplify/amplify-codegen/issues/872)) ([b4821bd](https://github.com/aws-amplify/amplify-codegen/commit/b4821bd3e02b41d35f1cf00f8076c84740975659))
+
 ## [2.12.3](https://github.com/aws-amplify/amplify-codegen/compare/@aws-amplify/appsync-modelgen-plugin@2.12.2...@aws-amplify/appsync-modelgen-plugin@2.12.3) (2024-07-01)
 
 **Note:** Version bump only for package @aws-amplify/appsync-modelgen-plugin

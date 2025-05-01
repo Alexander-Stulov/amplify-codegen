@@ -42,6 +42,7 @@
     "cloud-e2e": "source scripts/cloud-utils.sh && cloudE2E",
     "cloud-e2e-beta": "source scripts/cloud-utils.sh && cloudE2EBeta",
     "split-e2e-tests": "yarn ts-node ./scripts/split-e2e-tests.ts && git add .codebuild/e2e_workflow.yml",
+    "split-canary-tests": "yarn ts-node ./scripts/split-canary-tests.ts && git add .codebuild/ts_canary_workflow.yml && git add .codebuild/ios_canary_workflow.yml && git add .codebuild/android_canary_workflow.yml",
     "view-test-artifacts": "yarn authenticate-e2e-profile && yarn ts-node ./scripts/view-test-artifacts.ts",
     "cloud-e2e-debug": "source scripts/cloud-utils.sh && cloudE2EDebug",
     "authenticate-e2e-profile": "source scripts/cloud-utils.sh && authenticateWithE2EProfile",
@@ -63,7 +64,7 @@
     "hooks": {
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
       "pre-push": "npm run lint && npm run test-changed",
-      "pre-commit": "yarn split-e2e-tests && yarn extract-dependency-licenses"
+      "pre-commit": "yarn split-e2e-tests && yarn split-canary-tests && yarn extract-dependency-licenses"
     }
   },
   "author": "Amazon Web Services",
@@ -75,7 +76,7 @@
     "packages/*"
   ],
   "devDependencies": {
-    "@aws-amplify/amplify-cli-core": "^4.2.4-rc.43f73ab268.0",
+    "@aws-amplify/amplify-cli-core": "^4.4.1",
     "@commitlint/cli": "^17.0.3",
     "@commitlint/config-conventional": "^17.0.3",
     "@commitlint/config-lerna-scopes": "^17.0.2",
@@ -95,7 +96,7 @@
     "commitizen": "^4.2.4",
     "copyfiles": "^2.2.0",
     "cz-conventional-changelog": "^3.3.0",
-    "eslint": "^6.8.0",
+    "eslint": "^7.0.0",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-config-prettier": "^6.9.0",
     "eslint-import-resolver-typescript": "^2.0.0",
@@ -109,29 +110,35 @@
     "execa": "^5.1.1",
     "globby": "^11.1.0",
     "graphql-transformer-core": "^8.0.0",
-    "husky": "^3.0.3",
+    "husky": "^4.0.0",
     "jest": "^27.0.0",
     "jest-circus": "^27.0.0",
     "jest-junit": "^12.0.0",
     "js-yaml": "^4.0.0",
     "lnk": "1.1.0",
     "prettier": "^1.19.1",
-    "pretty-quick": "^3.1.0",
+    "pretty-quick": "^4.0.0",
     "rimraf": "^3.0.0",
     "ts-jest": "^27.0.0",
     "ts-node": "^8.10.1",
     "typescript": "4.7.4"
   },
   "resolutions": {
-    "@aws-amplify/amplify-cli-core": "4.2.4-rc.43f73ab268.0",
-    "minimist": "^1.2.6",
-    "lodash": "^4.17.21",
-    "node-fetch": "^2.6.7",
+    "**/@aws-amplify/amplify-codegen-e2e-tests/**/cookie": "^0.7.0",
+    "**/@aws-amplify/amplify-codegen-e2e-tests/**/fast-xml-parser": "^4.4.1",
+    "@octokit/plugin-paginate-rest": "^9.2.2",
+    "@octokit/request": "^8.4.1",
+    "@octokit/request-error": "^5.1.1",
+    "axios": "^1.7.4",
     "cross-fetch": "^2.2.6",
     "glob-parent": "^6.0.2",
-    "parse-url": "^8.1.0",
     "graphql": "15.8.0",
-    "xml2js": "0.5.0"
+    "lodash": "^4.17.21",
+    "minimist": "^1.2.6",
+    "node-fetch": "^2.6.7",
+    "parse-url": "^8.1.0",
+    "xml2js": "0.5.0",
+    "aws-cdk-lib": "^2.189.1"
   },
   "config": {
     "commitizen": {
